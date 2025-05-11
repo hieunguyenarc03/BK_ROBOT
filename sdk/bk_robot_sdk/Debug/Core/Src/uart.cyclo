@@ -1,0 +1,8 @@
+../Core/Src/uart.c:20:18:initUartReceiveIT	6
+../Core/Src/uart.c:54:18:uartTransmitString	3
+../Core/Src/uart.c:67:18:uartTransmit8b	5
+../Core/Src/uart.c:85:10:getFlagUart1	2
+../Core/Src/uart.c:95:10:getFlagUart2	2
+../Core/Src/uart.c:106:10:getBufferUart1	1
+../Core/Src/uart.c:111:10:getBufferUart2	1
+../Core/Src/uart.c:122:7:HAL_UART_RxCpltCallback	3

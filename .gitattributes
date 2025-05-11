@@ -1,0 +1,37 @@
+# Sources
+*.c     text diff=cpp eol=crlf
+*.cc    text diff=cpp eol=crlf
+*.cxx   text diff=cpp eol=crlf
+*.cpp   text diff=cpp eol=crlf
+*.cpi   text diff=cpp eol=crlf
+*.c++   text diff=cpp eol=crlf
+*.hpp   text diff=cpp eol=crlf
+*.h     text diff=cpp eol=crlf
+*.h++   text diff=cpp eol=crlf
+*.hh    text diff=cpp eol=crlf
+
+# Compiled Object files
+*.slo   binary
+*.lo    binary
+*.o     binary
+*.obj   binary
+
+# Precompiled Headers
+*.gch   binary
+*.pch   binary
+
+# Compiled Dynamic libraries
+*.so    binary
+*.dylib binary
+*.dll   binary
+
+# Compiled Static libraries
+*.lai   binary
+*.la    binary
+*.a     binary
+*.lib   binary
+
+# Executables
+*.exe   binary
+*.out   binary
+*.app   binary

@@ -1,0 +1,4 @@
+../Core/Src/robot_firmware.c:36:15:getModeId	16	static
+../Core/Src/robot_firmware.c:43:10:initSystem	8	static
+../Core/Src/robot_firmware.c:65:21:setupRobot	8	static
+../Core/Src/robot_firmware.c:157:21:processRobot	80	static

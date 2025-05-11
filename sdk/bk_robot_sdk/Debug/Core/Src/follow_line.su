@@ -1,0 +1,7 @@
+../Core/Src/follow_line.c:28:10:followLine	8	static
+../Core/Src/follow_line.c:124:10:turnRightAtCross	16	static
+../Core/Src/follow_line.c:193:10:turnLeftAtCross	16	static
+../Core/Src/follow_line.c:262:10:turnAroundAtCross	16	static
+../Core/Src/follow_line.c:299:10:disableFollowLine	4	static
+../Core/Src/follow_line.c:303:10:enableFollowLine	4	static
+../Core/Src/follow_line.c:368:13:getCrossCount	4	static

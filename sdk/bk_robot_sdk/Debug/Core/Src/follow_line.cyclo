@@ -1,0 +1,7 @@
+../Core/Src/follow_line.c:28:10:followLine	11
+../Core/Src/follow_line.c:124:10:turnRightAtCross	18
+../Core/Src/follow_line.c:193:10:turnLeftAtCross	18
+../Core/Src/follow_line.c:262:10:turnAroundAtCross	10
+../Core/Src/follow_line.c:299:10:disableFollowLine	1
+../Core/Src/follow_line.c:303:10:enableFollowLine	1
+../Core/Src/follow_line.c:368:13:getCrossCount	1

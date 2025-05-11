@@ -1,0 +1,2 @@
+../Core/Src/utils.c:11:6:uint32_to_bytes	32	static
+../Core/Src/utils.c:30:6:uint16_to_bytes	32	static
