@@ -130,6 +130,8 @@ extern "C"
 
         if (cross_num == cross_count && follow_line_state == FOLLOW_LINE && prev_cross_turn != cross_num) // Execute only once
         {
+            prev_cross_turn = cross_num;
+
             pulse_count_enc_1 = getPulseCount(ENCODER_1);
             pulse_count_enc_2 = getPulseCount(ENCODER_2);
             pulse_count_enc_3 = getPulseCount(ENCODER_3);
@@ -137,7 +139,6 @@ extern "C"
 
             moveForward(FOLLOW_LINE_SPEED);
 
-            prev_cross_turn = cross_num;
             follow_line_state = FOLLOW_LINE_TURN_RIGHT;
         }
 
@@ -158,10 +159,10 @@ extern "C"
             //     follow_line_state = FOLLOW_LINE;
             // }
 
-            if (getPulseCount(ENCODER_1) - pulse_count_enc_1 >= PULSE_PER_REVOLUTION * 2 / 3 &&
-                getPulseCount(ENCODER_2) - pulse_count_enc_2 >= PULSE_PER_REVOLUTION * 2 / 3 &&
-                getPulseCount(ENCODER_3) - pulse_count_enc_3 >= PULSE_PER_REVOLUTION * 2 / 3 &&
-                getPulseCount(ENCODER_4) - pulse_count_enc_4 >= PULSE_PER_REVOLUTION * 2 / 3)
+            if (getPulseCount(ENCODER_1) - pulse_count_enc_1 >= PULSE_PER_REVOLUTION / 2 &&
+                getPulseCount(ENCODER_2) - pulse_count_enc_2 >= PULSE_PER_REVOLUTION / 2 &&
+                getPulseCount(ENCODER_3) - pulse_count_enc_3 >= PULSE_PER_REVOLUTION / 2 &&
+                getPulseCount(ENCODER_4) - pulse_count_enc_4 >= PULSE_PER_REVOLUTION / 2)
             {
                 if (getLineStatus() == LINE_CENTER)
                 {
@@ -199,6 +200,8 @@ extern "C"
 
         if (cross_num == cross_count && follow_line_state == FOLLOW_LINE && prev_cross_turn != cross_num) // Execute only once
         {
+            prev_cross_turn = cross_num;
+
             pulse_count_enc_1 = getPulseCount(ENCODER_1);
             pulse_count_enc_2 = getPulseCount(ENCODER_2);
             pulse_count_enc_3 = getPulseCount(ENCODER_3);
@@ -206,7 +209,6 @@ extern "C"
 
             moveForward(FOLLOW_LINE_SPEED);
 
-            prev_cross_turn = cross_num;
             follow_line_state = FOLLOW_LINE_TURN_LEFT;
         }
 
@@ -227,10 +229,10 @@ extern "C"
             //     follow_line_state = FOLLOW_LINE;
             // }
 
-            if (getPulseCount(ENCODER_1) - pulse_count_enc_1 >= PULSE_PER_REVOLUTION * 2 / 3 &&
-                getPulseCount(ENCODER_2) - pulse_count_enc_2 >= PULSE_PER_REVOLUTION * 2 / 3 &&
-                getPulseCount(ENCODER_3) - pulse_count_enc_3 >= PULSE_PER_REVOLUTION * 2 / 3 &&
-                getPulseCount(ENCODER_4) - pulse_count_enc_4 >= PULSE_PER_REVOLUTION * 2 / 3)
+            if (getPulseCount(ENCODER_1) - pulse_count_enc_1 >= PULSE_PER_REVOLUTION / 2 &&
+                getPulseCount(ENCODER_2) - pulse_count_enc_2 >= PULSE_PER_REVOLUTION / 2 &&
+                getPulseCount(ENCODER_3) - pulse_count_enc_3 >= PULSE_PER_REVOLUTION / 2 &&
+                getPulseCount(ENCODER_4) - pulse_count_enc_4 >= PULSE_PER_REVOLUTION / 2)
             {
                 if (getLineStatus() == LINE_CENTER)
                 {
@@ -268,6 +270,8 @@ extern "C"
 
         if (cross_num == cross_count && follow_line_state == FOLLOW_LINE && prev_cross_turn != cross_num) // Execute only once
         {
+            prev_cross_turn = cross_num;
+            
             pulse_count_enc_1 = getPulseCount(ENCODER_1);
             pulse_count_enc_2 = getPulseCount(ENCODER_2);
             pulse_count_enc_3 = getPulseCount(ENCODER_3);
@@ -275,7 +279,6 @@ extern "C"
 
             rotateRight(FOLLOW_LINE_SPEED);
 
-            prev_cross_turn = cross_num;
             follow_line_state = FOLLOW_LINE_TURN_AROUND;
         }
 

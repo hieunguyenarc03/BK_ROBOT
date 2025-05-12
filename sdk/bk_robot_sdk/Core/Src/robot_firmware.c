@@ -127,7 +127,7 @@ extern "C"
         case MODE_CONTEST_AUTONOMOUS_2:
         {
             initSystem();
-            sTimer2Set(500, 50);
+            sTimer2Set(500, 10);
             displayLeds(0b00000000);
 
             moveStepMotor(UP, 5);
@@ -446,15 +446,14 @@ extern "C"
                     is_robot_ready = STATUS_OK;
                 }
 
-                (void)scanSensor();
-                displayLeds(getSensorState());
-
                 if (is_robot_ready == STATUS_OK)
                 {
                     toggleLedDebug();
 
                     static uint16_t previous_cross_count = 0;
-                    static uint16_t counter = 0;
+
+                    (void)scanSensor();
+                    displayLeds(getSensorState());
 
                     followLine();
                     turnRightAtCross(1);
@@ -462,6 +461,9 @@ extern "C"
                     turnRightAtCross(4);
                     turnLeftAtCross(5);
                     turnRightAtCross(10);
+                    turnLeftAtCross(14);
+                    turnRightAtCross(18);
+                    turnRightAtCross(20);
 
                     switch (getCrossCount())
                     {
@@ -487,15 +489,22 @@ extern "C"
                             motorStop();
 
                             servoSetAngle(SERVO_3, 55);
-                            moveStepMotor(UP, 5);
                         }
                         else
                         {
-                            counter = (counter + 1) % 40;
-                            if (counter == 0)
+                            static uint16_t is_executed = 0;
+
+                            if (is_executed == 0)
                             {
-                                enableFollowLine();
-                                moveForward(20);
+                                static uint16_t counter = 0;
+                                counter = (counter + 1) % (sTimer2TickPerSec() * 2);
+                                if (counter == 0)
+                                {
+                                    moveStepMotor(UP, 5);
+                                    enableFollowLine();
+                                    moveForward(20);
+                                    is_executed = 1;
+                                }
                             }
                         }
                         break;
@@ -513,19 +522,190 @@ extern "C"
                         }
                         else
                         {
-                            counter = (counter + 1) % 60; // 1 seconds
-                            if (counter == 20)
+                            static uint16_t is_executed = 0;
+
+                            if (is_executed == 0)
                             {
-                                servoSetAngle(SERVO_3, 0);
+                                static uint16_t counter = 0;
+                                counter = (counter + 1) % (sTimer2TickPerSec() * 3); // 3 seconds
+                                if (counter == sTimer2TickPerSec() * 1)
+                                {
+                                    servoSetAngle(SERVO_3, 0);
+                                }
+                                else if (counter == sTimer2TickPerSec() * 2)
+                                {
+                                    moveStepMotor(UP, 5);
+                                }
+                                else if (counter == 0)
+                                {
+                                    enableFollowLine();
+                                    is_executed = 1;
+                                }
                             }
-                            else if (counter == 40)
+                            else
                             {
-                                moveStepMotor(UP, 10);
+                                turnAroundAtCross(9);
                             }
-                            else if (counter == 60)
+                        }
+                        break;
+                    }
+                    case 11:
+                    {
+                        if (previous_cross_count != getCrossCount())
+                        {
+                            previous_cross_count = getCrossCount();
+
+                            servoSetAngle(SERVO_3, 0);
+                            moveStepMotor(DOWN, 5);
+                        }
+                        break;
+                    }
+
+                    case 12:
+                    {
+                        if (previous_cross_count != getCrossCount())
+                        {
+                            previous_cross_count = getCrossCount();
+
+                            disableFollowLine();
+                            motorStop();
+
+                            servoSetAngle(SERVO_3, 55);
+                        }
+                        else
+                        {
+                            static uint16_t is_executed = 0;
+
+                            if (is_executed == 0)
                             {
-                                enableFollowLine();
-                                turnAroundAtCross(10);
+                                static uint16_t counter = 0;
+                                counter = (counter + 1) % (sTimer2TickPerSec() * 1);
+                                if (counter == 0)
+                                {
+                                    moveStepMotor(UP, 5);
+                                    enableFollowLine();
+                                    is_executed = 1;
+                                }
+                            }
+                            else
+                            {
+                                turnAroundAtCross(12);
+                            }
+                        }
+                        break;
+                    }
+                    case 15:
+                    {
+                        if (previous_cross_count != getCrossCount())
+                        {
+                            previous_cross_count = getCrossCount();
+
+                            motorStop();
+                            disableFollowLine();
+
+                            moveStepMotor(DOWN, 2);
+                        }
+                        else
+                        {
+                            static uint16_t is_executed = 0;
+
+                            if (is_executed == 0)
+                            {
+                                static uint16_t counter = 0;
+                                counter = (counter + 1) % (sTimer2TickPerSec() * 3); // 3 seconds
+                                if (counter == sTimer2TickPerSec() * 1)
+                                {
+                                    servoSetAngle(SERVO_3, 0);
+                                }
+                                else if (counter == sTimer2TickPerSec() * 2)
+                                {
+                                    moveStepMotor(UP, 5);
+                                }
+                                else if (counter == sTimer2TickPerSec() * 0)
+                                {
+                                    enableFollowLine();
+                                    is_executed = 1;
+                                }
+                            }
+                            else
+                            {
+                                turnAroundAtCross(15);
+                            }
+                        }
+                        break;
+                    }
+                    case 18:
+                    {
+                        if (previous_cross_count != getCrossCount())
+                        {
+                            previous_cross_count = getCrossCount();
+
+                            moveStepMotor(DOWN, 10);
+                            servoSetAngle(SERVO_3, 0);
+                        }
+
+                        break;
+                    }
+                    case 19:
+                    {
+                        if (previous_cross_count != getCrossCount())
+                        {
+                            previous_cross_count = getCrossCount();
+
+                            disableFollowLine();
+                            motorStop();
+
+                            servoSetAngle(SERVO_3, 55);
+                        }
+
+                        else
+                        {
+                            static uint16_t is_executed = 0;
+
+                            if (is_executed == 0)
+                            {
+                                static uint16_t counter = 0;
+                                counter = (counter + 1) % (sTimer2TickPerSec() * 1);
+                                if (counter == 0)
+                                {
+                                    moveStepMotor(UP, 5);
+                                    enableFollowLine();
+                                    moveForward(20);
+                                    is_executed = 1;
+                                }
+                            }
+                        }
+
+                        break;
+                    }
+                    case 24:
+                    {
+                        if (previous_cross_count != getCrossCount())
+                        {
+                            previous_cross_count = getCrossCount();
+
+                            disableFollowLine();
+                            motorStop();
+
+                            moveStepMotor(DOWN, 5);
+                        }
+                        else
+                        {
+                            static uint16_t is_executed = 0;
+
+                            if (is_executed == 0)
+                            {
+                                static uint16_t counter = 0;
+                                counter = (counter + 1) % (sTimer2TickPerSec() * 2);
+                                if (counter == sTimer2TickPerSec() * 1)
+                                {
+                                    servoSetAngle(SERVO_3, 0);
+                                }
+                                else if (counter == sTimer2TickPerSec() * 0)
+                                {
+                                    moveStepMotor(UP, 10);
+                                    is_executed = 1;
+                                }
                             }
                         }
                         break;

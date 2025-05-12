@@ -60,6 +60,11 @@ extern "C"
 		return 0;
 	}
 
+	uint16_t sTimer2TickPerSec()
+	{
+		return 1000 / timer_2_mul;
+	}
+
 	/**
 	 * @brief	callback function call every 1ms
 	 */
