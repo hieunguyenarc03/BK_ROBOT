@@ -1,5 +1,5 @@
-../Core/Src/software_timer.c:22:18:initTimer2	16	static
-../Core/Src/software_timer.c:41:7:sTimer2Set	16	static
-../Core/Src/software_timer.c:52:10:sTimer2GetFlag	4	static
-../Core/Src/software_timer.c:63:11:sTimer2TickPerSec	4	static
-../Core/Src/software_timer.c:71:7:HAL_TIM_PeriodElapsedCallback	16	static
+../Core/Src/software_timer.c:23:18:initTimer2	16	static
+../Core/Src/software_timer.c:43:7:sTimer2Set	16	static
+../Core/Src/software_timer.c:56:10:sTimer2GetFlag	4	static
+../Core/Src/software_timer.c:71:11:sTimer2TickPerSec	4	static
+../Core/Src/software_timer.c:79:7:HAL_TIM_PeriodElapsedCallback	16	static

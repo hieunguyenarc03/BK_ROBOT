@@ -37,6 +37,7 @@
 #include "servo.h"
 #include "motor.h"
 #include "encoder.h"
+#include "pid.h"
 #include "step_motor.h"
 #include "line_sensor.h"
 #include "gamepad.h"

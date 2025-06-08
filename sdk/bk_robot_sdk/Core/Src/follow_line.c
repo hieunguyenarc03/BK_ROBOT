@@ -271,7 +271,7 @@ extern "C"
         if (cross_num == cross_count && follow_line_state == FOLLOW_LINE && prev_cross_turn != cross_num) // Execute only once
         {
             prev_cross_turn = cross_num;
-            
+
             pulse_count_enc_1 = getPulseCount(ENCODER_1);
             pulse_count_enc_2 = getPulseCount(ENCODER_2);
             pulse_count_enc_3 = getPulseCount(ENCODER_3);

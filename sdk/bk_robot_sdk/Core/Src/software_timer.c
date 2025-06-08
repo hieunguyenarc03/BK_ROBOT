@@ -17,7 +17,8 @@ extern "C"
 	uint16_t timer_2_mul = 0;
 
 	/**
-	 * @brief	init timer function
+	 * @brief init timer function
+	 * @note This function is called once in settup function
 	 */
 	enum StatusCode initTimer2()
 	{
@@ -35,6 +36,7 @@ extern "C"
 
 	/**
 	 * @brief	set timer duration(ms)
+	 * @note 	This function should be called in setup function
 	 * @param	delay(ms)
 	 * @param	period(ms)
 	 */
@@ -47,7 +49,9 @@ extern "C"
 
 	/**
 	 * @brief	get flag timer fuction and auto reset flags and timer counter
-	 * @return	timer flag
+	 * @return	1 if flag is set, 0 if not
+	 * @note	This function automatically reset the flag and timer counter
+	 * @note	if(sTimer2GetFlag()) { // do something }
 	 */
 	uint8_t sTimer2GetFlag()
 	{
@@ -60,6 +64,10 @@ extern "C"
 		return 0;
 	}
 
+	/**
+	 * @return	tick per second
+	 * @note	This function is used to get the timer tick per second
+	 */
 	uint16_t sTimer2TickPerSec()
 	{
 		return 1000 / timer_2_mul;

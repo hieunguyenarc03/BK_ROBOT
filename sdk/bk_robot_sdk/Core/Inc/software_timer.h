@@ -4,8 +4,6 @@
 #include <stdint.h>
 #include "global.h"
 
-
-
 enum StatusCode initTimer2(void);
 void sTimer2Set(uint16_t delay, uint16_t period);
 uint8_t sTimer2GetFlag(void);

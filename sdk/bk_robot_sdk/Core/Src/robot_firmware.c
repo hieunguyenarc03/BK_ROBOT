@@ -757,7 +757,7 @@ extern "C"
 
                 if (readGamepadData() == STATUS_OK)
                 {
-                    uint8_t speed = 25;
+                    uint8_t speed = 30;
 
                     if (isGamepadButtonPressed(BUTTON_TRIANGLE))
                     {
@@ -845,8 +845,8 @@ extern "C"
             {
                 toggleLedDebug();
 
-                uint8_t speed = 25;
-
+                uint8_t speed = 30;
+                
                 if (isSWGamepadButtonPressed(SW_BUTTON_START))
                 {
                     speed *= 2;

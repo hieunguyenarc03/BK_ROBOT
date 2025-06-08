@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  0000c034  2**0
                   CONTENTS, READONLY
- 12 .debug_info   000199a4  00000000  00000000  0000c05d  2**0
+ 12 .debug_info   000199ab  00000000  00000000  0000c05d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00004de9  00000000  00000000  00025a01  2**0
+ 13 .debug_abbrev 00004de9  00000000  00000000  00025a08  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000016d0  00000000  00000000  0002a7f0  2**3
+ 14 .debug_aranges 000016d0  00000000  00000000  0002a7f8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 0000123d  00000000  00000000  0002bec0  2**0
+ 15 .debug_rnglists 0000123d  00000000  00000000  0002bec8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0001e3e9  00000000  00000000  0002d0fd  2**0
+ 16 .debug_macro  0001e3f7  00000000  00000000  0002d105  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00020d1c  00000000  00000000  0004b4e6  2**0
+ 17 .debug_line   00020d27  00000000  00000000  0004b4fc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000a4030  00000000  00000000  0006c202  2**0
+ 18 .debug_str    000a4030  00000000  00000000  0006c223  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00110232  2**0
+ 19 .comment      00000043  00000000  00000000  00110253  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00005a34  00000000  00000000  00110278  2**2
+ 20 .debug_frame  00005a34  00000000  00000000  00110298  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000008a  00000000  00000000  00115cac  2**0
+ 21 .debug_line_str 0000008a  00000000  00000000  00115ccc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -2129,7 +2129,7 @@ void MX_DMA_Init(void)
  8000e7e:	4a2d      	ldr	r2, [pc, #180]	@ (8000f34 <turnAroundAtCross+0xdc>)
  8000e80:	88fb      	ldrh	r3, [r7, #6]
  8000e82:	8013      	strh	r3, [r2, #0]
-            
+
             pulse_count_enc_1 = getPulseCount(ENCODER_1);
  8000e84:	2000      	movs	r0, #0
  8000e86:	f7ff fd9f 	bl	80009c8 <getPulseCount>
@@ -4036,9 +4036,9 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  8001998:	200001b8 	.word	0x200001b8
 
 0800199c <initMotor>:
-#endif /* __cplusplus */
-
-	const uint32_t motor_channel[NUMBER_OF_MOTORS] = {TIM_CHANNEL_4, TIM_CHANNEL_3, TIM_CHANNEL_1, TIM_CHANNEL_2};
+	 * @brief	Initialize motor
+	 * @param	motor_id: motor id
+	 */
 
 	enum StatusCode initMotor(const enum Motor motor_id)
 	{
@@ -5168,7 +5168,7 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  80020c0:	08002111 	.word	0x08002111
  80020c4:	080021ab 	.word	0x080021ab
  80020c8:	08002225 	.word	0x08002225
- 80020cc:	080022e9 	.word	0x080022e9
+ 80020cc:	080022eb 	.word	0x080022eb
  80020d0:	08002eab 	.word	0x08002eab
  80020d4:	08002405 	.word	0x08002405
  80020d8:	080024db 	.word	0x080024db
@@ -5379,236 +5379,235 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  8002238:	4b71      	ldr	r3, [pc, #452]	@ (8002400 <processRobot+0x35c>)
  800223a:	781b      	ldrb	r3, [r3, #0]
  800223c:	2b00      	cmp	r3, #0
- 800223e:	d13c      	bne.n	80022ba <processRobot+0x216>
+ 800223e:	d13d      	bne.n	80022bc <processRobot+0x218>
                 {
                     if (isButtonPressed(BUTTON_1))
  8002240:	2000      	movs	r0, #0
  8002242:	f7fe f987 	bl	8000554 <isButtonPressed>
  8002246:	4603      	mov	r3, r0
  8002248:	2b00      	cmp	r3, #0
- 800224a:	d008      	beq.n	800225e <processRobot+0x1ba>
+ 800224a:	d009      	beq.n	8002260 <processRobot+0x1bc>
                     {
-                        moveDirection(FORWARD, 30);
- 800224c:	211e      	movs	r1, #30
- 800224e:	2000      	movs	r0, #0
- 8002250:	f7ff fda4 	bl	8001d9c <moveDirection>
+                        moveDirection(FORWARD, 1000);
+ 800224c:	f44f 717a 	mov.w	r1, #1000	@ 0x3e8
+ 8002250:	2000      	movs	r0, #0
+ 8002252:	f7ff fda3 	bl	8001d9c <moveDirection>
                         counter = 60;
- 8002254:	4b6a      	ldr	r3, [pc, #424]	@ (8002400 <processRobot+0x35c>)
- 8002256:	223c      	movs	r2, #60	@ 0x3c
- 8002258:	701a      	strb	r2, [r3, #0]
+ 8002256:	4b6a      	ldr	r3, [pc, #424]	@ (8002400 <processRobot+0x35c>)
+ 8002258:	223c      	movs	r2, #60	@ 0x3c
+ 800225a:	701a      	strb	r2, [r3, #0]
                         motorStop();
                         displayLeds(0b00000000);
                     }
                 }
             }
             break;
- 800225a:	f000 be2e 	b.w	8002eba <processRobot+0xe16>
+ 800225c:	f000 be2d 	b.w	8002eba <processRobot+0xe16>
                     else if (isButtonPressed(BUTTON_2))
- 800225e:	2001      	movs	r0, #1
- 8002260:	f7fe f978 	bl	8000554 <isButtonPressed>
- 8002264:	4603      	mov	r3, r0
- 8002266:	2b00      	cmp	r3, #0
- 8002268:	d008      	beq.n	800227c <processRobot+0x1d8>
+ 8002260:	2001      	movs	r0, #1
+ 8002262:	f7fe f977 	bl	8000554 <isButtonPressed>
+ 8002266:	4603      	mov	r3, r0
+ 8002268:	2b00      	cmp	r3, #0
+ 800226a:	d008      	beq.n	800227e <processRobot+0x1da>
                         moveDirection(BACKWARD, 30);
- 800226a:	211e      	movs	r1, #30
- 800226c:	2001      	movs	r0, #1
- 800226e:	f7ff fd95 	bl	8001d9c <moveDirection>
+ 800226c:	211e      	movs	r1, #30
+ 800226e:	2001      	movs	r0, #1
+ 8002270:	f7ff fd94 	bl	8001d9c <moveDirection>
                         counter = 60;
- 8002272:	4b63      	ldr	r3, [pc, #396]	@ (8002400 <processRobot+0x35c>)
- 8002274:	223c      	movs	r2, #60	@ 0x3c
- 8002276:	701a      	strb	r2, [r3, #0]
+ 8002274:	4b62      	ldr	r3, [pc, #392]	@ (8002400 <processRobot+0x35c>)
+ 8002276:	223c      	movs	r2, #60	@ 0x3c
+ 8002278:	701a      	strb	r2, [r3, #0]
             break;
- 8002278:	f000 be1f 	b.w	8002eba <processRobot+0xe16>
+ 800227a:	f000 be1e 	b.w	8002eba <processRobot+0xe16>
                     else if (isButtonPressed(BUTTON_3))
- 800227c:	2002      	movs	r0, #2
- 800227e:	f7fe f969 	bl	8000554 <isButtonPressed>
- 8002282:	4603      	mov	r3, r0
- 8002284:	2b00      	cmp	r3, #0
- 8002286:	d008      	beq.n	800229a <processRobot+0x1f6>
+ 800227e:	2002      	movs	r0, #2
+ 8002280:	f7fe f968 	bl	8000554 <isButtonPressed>
+ 8002284:	4603      	mov	r3, r0
+ 8002286:	2b00      	cmp	r3, #0
+ 8002288:	d008      	beq.n	800229c <processRobot+0x1f8>
                         moveDirection(LEFT, 30);
- 8002288:	211e      	movs	r1, #30
- 800228a:	2002      	movs	r0, #2
- 800228c:	f7ff fd86 	bl	8001d9c <moveDirection>
+ 800228a:	211e      	movs	r1, #30
+ 800228c:	2002      	movs	r0, #2
+ 800228e:	f7ff fd85 	bl	8001d9c <moveDirection>
                         counter = 60;
- 8002290:	4b5b      	ldr	r3, [pc, #364]	@ (8002400 <processRobot+0x35c>)
- 8002292:	223c      	movs	r2, #60	@ 0x3c
- 8002294:	701a      	strb	r2, [r3, #0]
+ 8002292:	4b5b      	ldr	r3, [pc, #364]	@ (8002400 <processRobot+0x35c>)
+ 8002294:	223c      	movs	r2, #60	@ 0x3c
+ 8002296:	701a      	strb	r2, [r3, #0]
             break;
- 8002296:	f000 be10 	b.w	8002eba <processRobot+0xe16>
+ 8002298:	f000 be0f 	b.w	8002eba <processRobot+0xe16>
                     else if (isButtonPressed(BUTTON_4))
- 800229a:	2003      	movs	r0, #3
- 800229c:	f7fe f95a 	bl	8000554 <isButtonPressed>
- 80022a0:	4603      	mov	r3, r0
- 80022a2:	2b00      	cmp	r3, #0
- 80022a4:	f000 8609 	beq.w	8002eba <processRobot+0xe16>
+ 800229c:	2003      	movs	r0, #3
+ 800229e:	f7fe f959 	bl	8000554 <isButtonPressed>
+ 80022a2:	4603      	mov	r3, r0
+ 80022a4:	2b00      	cmp	r3, #0
+ 80022a6:	f000 8608 	beq.w	8002eba <processRobot+0xe16>
                         moveDirection(RIGHT, 30);
- 80022a8:	211e      	movs	r1, #30
- 80022aa:	2003      	movs	r0, #3
- 80022ac:	f7ff fd76 	bl	8001d9c <moveDirection>
+ 80022aa:	211e      	movs	r1, #30
+ 80022ac:	2003      	movs	r0, #3
+ 80022ae:	f7ff fd75 	bl	8001d9c <moveDirection>
                         counter = 60;
- 80022b0:	4b53      	ldr	r3, [pc, #332]	@ (8002400 <processRobot+0x35c>)
- 80022b2:	223c      	movs	r2, #60	@ 0x3c
- 80022b4:	701a      	strb	r2, [r3, #0]
+ 80022b2:	4b53      	ldr	r3, [pc, #332]	@ (8002400 <processRobot+0x35c>)
+ 80022b4:	223c      	movs	r2, #60	@ 0x3c
+ 80022b6:	701a      	strb	r2, [r3, #0]
             break;
- 80022b6:	f000 be00 	b.w	8002eba <processRobot+0xe16>
+ 80022b8:	f000 bdff 	b.w	8002eba <processRobot+0xe16>
                     --counter;
- 80022ba:	4b51      	ldr	r3, [pc, #324]	@ (8002400 <processRobot+0x35c>)
- 80022bc:	781b      	ldrb	r3, [r3, #0]
- 80022be:	3b01      	subs	r3, #1
- 80022c0:	b2da      	uxtb	r2, r3
- 80022c2:	4b4f      	ldr	r3, [pc, #316]	@ (8002400 <processRobot+0x35c>)
- 80022c4:	701a      	strb	r2, [r3, #0]
+ 80022bc:	4b50      	ldr	r3, [pc, #320]	@ (8002400 <processRobot+0x35c>)
+ 80022be:	781b      	ldrb	r3, [r3, #0]
+ 80022c0:	3b01      	subs	r3, #1
+ 80022c2:	b2da      	uxtb	r2, r3
+ 80022c4:	4b4e      	ldr	r3, [pc, #312]	@ (8002400 <processRobot+0x35c>)
+ 80022c6:	701a      	strb	r2, [r3, #0]
                     displayLeds(counter);
- 80022c6:	4b4e      	ldr	r3, [pc, #312]	@ (8002400 <processRobot+0x35c>)
- 80022c8:	781b      	ldrb	r3, [r3, #0]
- 80022ca:	4618      	mov	r0, r3
- 80022cc:	f7fe fae8 	bl	80008a0 <displayLeds>
+ 80022c8:	4b4d      	ldr	r3, [pc, #308]	@ (8002400 <processRobot+0x35c>)
+ 80022ca:	781b      	ldrb	r3, [r3, #0]
+ 80022cc:	4618      	mov	r0, r3
+ 80022ce:	f7fe fae7 	bl	80008a0 <displayLeds>
                     if (counter == 0)
- 80022d0:	4b4b      	ldr	r3, [pc, #300]	@ (8002400 <processRobot+0x35c>)
- 80022d2:	781b      	ldrb	r3, [r3, #0]
- 80022d4:	2b00      	cmp	r3, #0
- 80022d6:	f040 85f0 	bne.w	8002eba <processRobot+0xe16>
+ 80022d2:	4b4b      	ldr	r3, [pc, #300]	@ (8002400 <processRobot+0x35c>)
+ 80022d4:	781b      	ldrb	r3, [r3, #0]
+ 80022d6:	2b00      	cmp	r3, #0
+ 80022d8:	f040 85ef 	bne.w	8002eba <processRobot+0xe16>
                         motorStop();
- 80022da:	f7ff fc67 	bl	8001bac <motorStop>
+ 80022dc:	f7ff fc66 	bl	8001bac <motorStop>
                         displayLeds(0b00000000);
- 80022de:	2000      	movs	r0, #0
- 80022e0:	f7fe fade 	bl	80008a0 <displayLeds>
+ 80022e0:	2000      	movs	r0, #0
+ 80022e2:	f7fe fadd 	bl	80008a0 <displayLeds>
             break;
- 80022e4:	f000 bde9 	b.w	8002eba <processRobot+0xe16>
+ 80022e6:	f000 bde8 	b.w	8002eba <processRobot+0xe16>
         }
 
         case MODE_TEST_ENCODERS:
         {
             if (sTimer2GetFlag())
- 80022e8:	f000 feae 	bl	8003048 <sTimer2GetFlag>
- 80022ec:	4603      	mov	r3, r0
- 80022ee:	2b00      	cmp	r3, #0
- 80022f0:	f000 85e5 	beq.w	8002ebe <processRobot+0xe1a>
+ 80022ea:	f000 fead 	bl	8003048 <sTimer2GetFlag>
+ 80022ee:	4603      	mov	r3, r0
+ 80022f0:	2b00      	cmp	r3, #0
+ 80022f2:	f000 85e4 	beq.w	8002ebe <processRobot+0xe1a>
             {
                 toggleLedDebug();
- 80022f4:	f7fe fae8 	bl	80008c8 <toggleLedDebug>
+ 80022f6:	f7fe fae7 	bl	80008c8 <toggleLedDebug>
                 (void)scanButton();
- 80022f8:	f7fe f8e6 	bl	80004c8 <scanButton>
+ 80022fa:	f7fe f8e5 	bl	80004c8 <scanButton>
 
                 if (isButtonPressed(BUTTON_1))
- 80022fc:	2000      	movs	r0, #0
- 80022fe:	f7fe f929 	bl	8000554 <isButtonPressed>
- 8002302:	4603      	mov	r3, r0
- 8002304:	2b00      	cmp	r3, #0
- 8002306:	d017      	beq.n	8002338 <processRobot+0x294>
+ 80022fe:	2000      	movs	r0, #0
+ 8002300:	f7fe f928 	bl	8000554 <isButtonPressed>
+ 8002304:	4603      	mov	r3, r0
+ 8002306:	2b00      	cmp	r3, #0
+ 8002308:	d017      	beq.n	800233a <processRobot+0x296>
                 {
                     uint32_t encoder_1_pulse = getPulseCount(ENCODER_1);
- 8002308:	2000      	movs	r0, #0
- 800230a:	f7fe fb5d 	bl	80009c8 <getPulseCount>
- 800230e:	4603      	mov	r3, r0
- 8002310:	643b      	str	r3, [r7, #64]	@ 0x40
+ 800230a:	2000      	movs	r0, #0
+ 800230c:	f7fe fb5c 	bl	80009c8 <getPulseCount>
+ 8002310:	4603      	mov	r3, r0
+ 8002312:	643b      	str	r3, [r7, #64]	@ 0x40
                     uint8_t transmit_buffer[4] = {0};
- 8002312:	2300      	movs	r3, #0
- 8002314:	63fb      	str	r3, [r7, #60]	@ 0x3c
+ 8002314:	2300      	movs	r3, #0
+ 8002316:	63fb      	str	r3, [r7, #60]	@ 0x3c
                     uint32_to_bytes(&encoder_1_pulse, transmit_buffer, 1);
- 8002316:	f107 013c 	add.w	r1, r7, #60	@ 0x3c
- 800231a:	f107 0340 	add.w	r3, r7, #64	@ 0x40
- 800231e:	2201      	movs	r2, #1
- 8002320:	4618      	mov	r0, r3
- 8002322:	f001 fea9 	bl	8004078 <uint32_to_bytes>
+ 8002318:	f107 013c 	add.w	r1, r7, #60	@ 0x3c
+ 800231c:	f107 0340 	add.w	r3, r7, #64	@ 0x40
+ 8002320:	2201      	movs	r2, #1
+ 8002322:	4618      	mov	r0, r3
+ 8002324:	f001 fea8 	bl	8004078 <uint32_to_bytes>
                     uartTransmit8b(&huart2, transmit_buffer, 4);
- 8002326:	f107 033c 	add.w	r3, r7, #60	@ 0x3c
- 800232a:	2204      	movs	r2, #4
- 800232c:	4619      	mov	r1, r3
- 800232e:	4832      	ldr	r0, [pc, #200]	@ (80023f8 <processRobot+0x354>)
- 8002330:	f001 fd34 	bl	8003d9c <uartTransmit8b>
+ 8002328:	f107 033c 	add.w	r3, r7, #60	@ 0x3c
+ 800232c:	2204      	movs	r2, #4
+ 800232e:	4619      	mov	r1, r3
+ 8002330:	4831      	ldr	r0, [pc, #196]	@ (80023f8 <processRobot+0x354>)
+ 8002332:	f001 fd33 	bl	8003d9c <uartTransmit8b>
                     uint8_t transmit_buffer[4] = {0};
                     uint32_to_bytes(&encoder_4_pulse, transmit_buffer, 1);
                     uartTransmit8b(&huart2, transmit_buffer, 4);
                 }
             }
             break;
- 8002334:	f000 bdc3 	b.w	8002ebe <processRobot+0xe1a>
+ 8002336:	f000 bdc2 	b.w	8002ebe <processRobot+0xe1a>
                 else if (isButtonPressed(BUTTON_2))
- 8002338:	2001      	movs	r0, #1
- 800233a:	f7fe f90b 	bl	8000554 <isButtonPressed>
- 800233e:	4603      	mov	r3, r0
- 8002340:	2b00      	cmp	r3, #0
- 8002342:	d017      	beq.n	8002374 <processRobot+0x2d0>
+ 800233a:	2001      	movs	r0, #1
+ 800233c:	f7fe f90a 	bl	8000554 <isButtonPressed>
+ 8002340:	4603      	mov	r3, r0
+ 8002342:	2b00      	cmp	r3, #0
+ 8002344:	d017      	beq.n	8002376 <processRobot+0x2d2>
                     uint32_t encoder_2_pulse = getPulseCount(ENCODER_2);
- 8002344:	2001      	movs	r0, #1
- 8002346:	f7fe fb3f 	bl	80009c8 <getPulseCount>
- 800234a:	4603      	mov	r3, r0
- 800234c:	63bb      	str	r3, [r7, #56]	@ 0x38
+ 8002346:	2001      	movs	r0, #1
+ 8002348:	f7fe fb3e 	bl	80009c8 <getPulseCount>
+ 800234c:	4603      	mov	r3, r0
+ 800234e:	63bb      	str	r3, [r7, #56]	@ 0x38
                     uint8_t transmit_buffer[4] = {0};
- 800234e:	2300      	movs	r3, #0
- 8002350:	637b      	str	r3, [r7, #52]	@ 0x34
+ 8002350:	2300      	movs	r3, #0
+ 8002352:	637b      	str	r3, [r7, #52]	@ 0x34
                     uint32_to_bytes(&encoder_2_pulse, transmit_buffer, 1);
- 8002352:	f107 0134 	add.w	r1, r7, #52	@ 0x34
- 8002356:	f107 0338 	add.w	r3, r7, #56	@ 0x38
- 800235a:	2201      	movs	r2, #1
- 800235c:	4618      	mov	r0, r3
- 800235e:	f001 fe8b 	bl	8004078 <uint32_to_bytes>
+ 8002354:	f107 0134 	add.w	r1, r7, #52	@ 0x34
+ 8002358:	f107 0338 	add.w	r3, r7, #56	@ 0x38
+ 800235c:	2201      	movs	r2, #1
+ 800235e:	4618      	mov	r0, r3
+ 8002360:	f001 fe8a 	bl	8004078 <uint32_to_bytes>
                     uartTransmit8b(&huart2, transmit_buffer, 4);
- 8002362:	f107 0334 	add.w	r3, r7, #52	@ 0x34
- 8002366:	2204      	movs	r2, #4
- 8002368:	4619      	mov	r1, r3
- 800236a:	4823      	ldr	r0, [pc, #140]	@ (80023f8 <processRobot+0x354>)
- 800236c:	f001 fd16 	bl	8003d9c <uartTransmit8b>
+ 8002364:	f107 0334 	add.w	r3, r7, #52	@ 0x34
+ 8002368:	2204      	movs	r2, #4
+ 800236a:	4619      	mov	r1, r3
+ 800236c:	4822      	ldr	r0, [pc, #136]	@ (80023f8 <processRobot+0x354>)
+ 800236e:	f001 fd15 	bl	8003d9c <uartTransmit8b>
             break;
- 8002370:	f000 bda5 	b.w	8002ebe <processRobot+0xe1a>
+ 8002372:	f000 bda4 	b.w	8002ebe <processRobot+0xe1a>
                 else if (isButtonPressed(BUTTON_3))
- 8002374:	2002      	movs	r0, #2
- 8002376:	f7fe f8ed 	bl	8000554 <isButtonPressed>
- 800237a:	4603      	mov	r3, r0
- 800237c:	2b00      	cmp	r3, #0
- 800237e:	d017      	beq.n	80023b0 <processRobot+0x30c>
+ 8002376:	2002      	movs	r0, #2
+ 8002378:	f7fe f8ec 	bl	8000554 <isButtonPressed>
+ 800237c:	4603      	mov	r3, r0
+ 800237e:	2b00      	cmp	r3, #0
+ 8002380:	d017      	beq.n	80023b2 <processRobot+0x30e>
                     uint32_t encoder_3_pulse = getPulseCount(ENCODER_3);
- 8002380:	2002      	movs	r0, #2
- 8002382:	f7fe fb21 	bl	80009c8 <getPulseCount>
- 8002386:	4603      	mov	r3, r0
- 8002388:	633b      	str	r3, [r7, #48]	@ 0x30
+ 8002382:	2002      	movs	r0, #2
+ 8002384:	f7fe fb20 	bl	80009c8 <getPulseCount>
+ 8002388:	4603      	mov	r3, r0
+ 800238a:	633b      	str	r3, [r7, #48]	@ 0x30
                     uint8_t transmit_buffer[4] = {0};
- 800238a:	2300      	movs	r3, #0
- 800238c:	62fb      	str	r3, [r7, #44]	@ 0x2c
+ 800238c:	2300      	movs	r3, #0
+ 800238e:	62fb      	str	r3, [r7, #44]	@ 0x2c
                     uint32_to_bytes(&encoder_3_pulse, transmit_buffer, 1);
- 800238e:	f107 012c 	add.w	r1, r7, #44	@ 0x2c
- 8002392:	f107 0330 	add.w	r3, r7, #48	@ 0x30
- 8002396:	2201      	movs	r2, #1
- 8002398:	4618      	mov	r0, r3
- 800239a:	f001 fe6d 	bl	8004078 <uint32_to_bytes>
+ 8002390:	f107 012c 	add.w	r1, r7, #44	@ 0x2c
+ 8002394:	f107 0330 	add.w	r3, r7, #48	@ 0x30
+ 8002398:	2201      	movs	r2, #1
+ 800239a:	4618      	mov	r0, r3
+ 800239c:	f001 fe6c 	bl	8004078 <uint32_to_bytes>
                     uartTransmit8b(&huart2, transmit_buffer, 4);
- 800239e:	f107 032c 	add.w	r3, r7, #44	@ 0x2c
- 80023a2:	2204      	movs	r2, #4
- 80023a4:	4619      	mov	r1, r3
- 80023a6:	4814      	ldr	r0, [pc, #80]	@ (80023f8 <processRobot+0x354>)
- 80023a8:	f001 fcf8 	bl	8003d9c <uartTransmit8b>
+ 80023a0:	f107 032c 	add.w	r3, r7, #44	@ 0x2c
+ 80023a4:	2204      	movs	r2, #4
+ 80023a6:	4619      	mov	r1, r3
+ 80023a8:	4813      	ldr	r0, [pc, #76]	@ (80023f8 <processRobot+0x354>)
+ 80023aa:	f001 fcf7 	bl	8003d9c <uartTransmit8b>
             break;
- 80023ac:	f000 bd87 	b.w	8002ebe <processRobot+0xe1a>
+ 80023ae:	f000 bd86 	b.w	8002ebe <processRobot+0xe1a>
                 else if (isButtonPressed(BUTTON_4))
- 80023b0:	2003      	movs	r0, #3
- 80023b2:	f7fe f8cf 	bl	8000554 <isButtonPressed>
- 80023b6:	4603      	mov	r3, r0
- 80023b8:	2b00      	cmp	r3, #0
- 80023ba:	f000 8580 	beq.w	8002ebe <processRobot+0xe1a>
+ 80023b2:	2003      	movs	r0, #3
+ 80023b4:	f7fe f8ce 	bl	8000554 <isButtonPressed>
+ 80023b8:	4603      	mov	r3, r0
+ 80023ba:	2b00      	cmp	r3, #0
+ 80023bc:	f000 857f 	beq.w	8002ebe <processRobot+0xe1a>
                     uint32_t encoder_4_pulse = getPulseCount(ENCODER_4);
- 80023be:	2003      	movs	r0, #3
- 80023c0:	f7fe fb02 	bl	80009c8 <getPulseCount>
- 80023c4:	4603      	mov	r3, r0
- 80023c6:	62bb      	str	r3, [r7, #40]	@ 0x28
+ 80023c0:	2003      	movs	r0, #3
+ 80023c2:	f7fe fb01 	bl	80009c8 <getPulseCount>
+ 80023c6:	4603      	mov	r3, r0
+ 80023c8:	62bb      	str	r3, [r7, #40]	@ 0x28
                     uint8_t transmit_buffer[4] = {0};
- 80023c8:	2300      	movs	r3, #0
- 80023ca:	627b      	str	r3, [r7, #36]	@ 0x24
+ 80023ca:	2300      	movs	r3, #0
+ 80023cc:	627b      	str	r3, [r7, #36]	@ 0x24
                     uint32_to_bytes(&encoder_4_pulse, transmit_buffer, 1);
- 80023cc:	f107 0124 	add.w	r1, r7, #36	@ 0x24
- 80023d0:	f107 0328 	add.w	r3, r7, #40	@ 0x28
- 80023d4:	2201      	movs	r2, #1
- 80023d6:	4618      	mov	r0, r3
- 80023d8:	f001 fe4e 	bl	8004078 <uint32_to_bytes>
+ 80023ce:	f107 0124 	add.w	r1, r7, #36	@ 0x24
+ 80023d2:	f107 0328 	add.w	r3, r7, #40	@ 0x28
+ 80023d6:	2201      	movs	r2, #1
+ 80023d8:	4618      	mov	r0, r3
+ 80023da:	f001 fe4d 	bl	8004078 <uint32_to_bytes>
                     uartTransmit8b(&huart2, transmit_buffer, 4);
- 80023dc:	f107 0324 	add.w	r3, r7, #36	@ 0x24
- 80023e0:	2204      	movs	r2, #4
- 80023e2:	4619      	mov	r1, r3
- 80023e4:	4804      	ldr	r0, [pc, #16]	@ (80023f8 <processRobot+0x354>)
- 80023e6:	f001 fcd9 	bl	8003d9c <uartTransmit8b>
+ 80023de:	f107 0324 	add.w	r3, r7, #36	@ 0x24
+ 80023e2:	2204      	movs	r2, #4
+ 80023e4:	4619      	mov	r1, r3
+ 80023e6:	4804      	ldr	r0, [pc, #16]	@ (80023f8 <processRobot+0x354>)
+ 80023e8:	f001 fcd8 	bl	8003d9c <uartTransmit8b>
             break;
- 80023ea:	f000 bd68 	b.w	8002ebe <processRobot+0xe1a>
- 80023ee:	bf00      	nop
+ 80023ec:	f000 bd67 	b.w	8002ebe <processRobot+0xe1a>
  80023f0:	200001c5 	.word	0x200001c5
  80023f4:	200001c6 	.word	0x200001c6
  80023f8:	20000408 	.word	0x20000408
@@ -6697,8 +6696,8 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  8002b56:	2b01      	cmp	r3, #1
  8002b58:	f040 81bb 	bne.w	8002ed2 <processRobot+0xe2e>
                 {
-                    uint8_t speed = 25;
- 8002b5c:	2319      	movs	r3, #25
+                    uint8_t speed = 30;
+ 8002b5c:	231e      	movs	r3, #30
  8002b5e:	f887 3047 	strb.w	r3, [r7, #71]	@ 0x47
 
                     if (isGamepadButtonPressed(BUTTON_TRIANGLE))
@@ -6963,8 +6962,8 @@ __STATIC_FORCEINLINE void __disable_irq(void)
                 toggleLedDebug();
  8002d18:	f7fd fdd6 	bl	80008c8 <toggleLedDebug>
 
-                uint8_t speed = 25;
- 8002d1c:	2319      	movs	r3, #25
+                uint8_t speed = 30;
+ 8002d1c:	231e      	movs	r3, #30
  8002d1e:	f887 3046 	strb.w	r3, [r7, #70]	@ 0x46
 
                 if (isSWGamepadButtonPressed(SW_BUTTON_START))
@@ -7392,9 +7391,9 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  8002fd0:	200002e4 	.word	0x200002e4
 
 08002fd4 <initTimer2>:
-
 	/**
-	 * @brief	init timer function
+	 * @brief init timer function
+	 * @note This function is called once in settup function
 	 */
 	enum StatusCode initTimer2()
 	{
@@ -7439,7 +7438,7 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  800300c:	20000254 	.word	0x20000254
 
 08003010 <sTimer2Set>:
-	 * @brief	set timer duration(ms)
+	 * @note 	This function should be called in setup function
 	 * @param	delay(ms)
 	 * @param	period(ms)
 	 */
@@ -7476,9 +7475,9 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  8003044:	200001e6 	.word	0x200001e6
 
 08003048 <sTimer2GetFlag>:
-	/**
-	 * @brief	get flag timer fuction and auto reset flags and timer counter
-	 * @return	timer flag
+	 * @return	1 if flag is set, 0 if not
+	 * @note	This function automatically reset the flag and timer counter
+	 * @note	if(sTimer2GetFlag()) { // do something }
 	 */
 	uint8_t sTimer2GetFlag()
 	{
@@ -7515,7 +7514,10 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  8003078:	200001e8 	.word	0x200001e8
 
 0800307c <sTimer2TickPerSec>:
-
+	/**
+	 * @return	tick per second
+	 * @note	This function is used to get the timer tick per second
+	 */
 	uint16_t sTimer2TickPerSec()
 	{
  800307c:	b480      	push	{r7}

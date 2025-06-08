@@ -15,6 +15,11 @@ extern "C"
 
 	const uint32_t motor_channel[NUMBER_OF_MOTORS] = {TIM_CHANNEL_4, TIM_CHANNEL_3, TIM_CHANNEL_1, TIM_CHANNEL_2};
 
+	/**
+	 * @brief	Initialize motor
+	 * @param	motor_id: motor id
+	 */
+
 	enum StatusCode initMotor(const enum Motor motor_id)
 	{
 		for (uint8_t attempt = 0; attempt < MAX_RETRY_COUNT; ++attempt)
